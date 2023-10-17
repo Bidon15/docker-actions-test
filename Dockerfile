@@ -6,8 +6,7 @@ RUN CGO_ENABLED=0 GOOS=linux go build -o main .
 ######## Start a new stage from scratch #######
 FROM docker.io/alpine:3.18.2
 
-RUN apk update && apk add --no-cache \
-        bash \
+RUN apk update && apk add --no-cache bash curl
 COPY --from=builder /app/main .
 # Command to run the executable
 CMD ["./main"]
